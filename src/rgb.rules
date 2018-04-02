@@ -1,0 +1,28 @@
+import org.openhab.core.library.types.*
+
+// Converts OpenHAB colorpicker HSB values into RRGGBB hex string for MQTT
+// see references at:
+// https://docs.openhab.org/configuration/sitemaps.html#element-type-colorpicker
+// https://community.openhab.org/t/oh2-how-to-convert-colorpicker-to-rgb-values/
+// https://community.openhab.org/t/example-convert-color-item-values-to-rgb-with-explanation/
+
+rule "Set HSB value of item RGBLed to RGB color value"
+when
+        Item AllinRGBLed changed
+then
+        val hsbValue = AllinRGBLed.state as HSBType
+
+        val brightness = hsbValue.brightness.intValue
+        val redValue = String.format("%02X", (hsbValue.red.floatValue*2.55*hsbValue.brightness.intValue/100).intValue)
+        val greenValue = String.format("%02X", (hsbValue.green.floatValue*2.55*hsbValue.brightness.intValue/100).intValue)
+        val blueValue = String.format("%02X", (hsbValue.blue.floatValue*2.55*hsbValue.brightness.intValue/100).intValue)
+        // the below one does not output two character of hex (%02X).
+        //val redValue = Integer.toHexString(hsbValue.red.intValue)
+        //val greenValue = Integer.toHexString(hsbValue.green.intValue)
+        //val blueValue = Integer.toHexString(hsbValue.blue.intValue)
+
+        val color = redValue + greenValue + blueValue
+        logInfo("AllinRGBLed changed: ", "Colour: " + color)
+
+        sendCommand(allin_rgb_color, color)
+end
