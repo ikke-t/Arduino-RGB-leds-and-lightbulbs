@@ -20,3 +20,11 @@ LICENCE: GPLv2
 ![first trial](https://github.com/ikke-t/Arduino-RGB-leds-and-lightbulbs/raw/master/pics/kuva4.jpg)
 ![OpenHAB android 1](https://github.com/ikke-t/Arduino-RGB-leds-and-lightbulbs/raw/master/pics/kuva5.jpg)
 ![OpenHAB android 2](https://github.com/ikke-t/Arduino-RGB-leds-and-lightbulbs/raw/master/pics/kuva6.jpg)
+
+# Video of the led effects
+
+I was requested to add:
+
+![LED effects video at youtube](https://youtu.be/chN6CxMVWm4)
+
+I mention delay there, I meant fade, which is adjustable. Effects are created by @maghac. Please send PR for more :) I forgot to video the dimmer slider for lightbulbs, there is that too. The leds are still just laying on shelves, not attache to anything yet.
