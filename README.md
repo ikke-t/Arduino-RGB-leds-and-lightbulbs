@@ -25,6 +25,6 @@ LICENCE: GPLv2
 
 I was requested to add:
 
-![LED effects video at youtube](https://youtu.be/chN6CxMVWm4)
+[LED effects video at youtube](https://youtu.be/chN6CxMVWm4)
 
 I mention delay there, I meant fade, which is adjustable. Effects are created by @maghac. Please send PR for more :) I forgot to video the dimmer slider for lightbulbs, there is that too. The leds are still just laying on shelves, not attache to anything yet.
