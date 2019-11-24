@@ -26,7 +26,7 @@
  */
 
 // Prepare radio with NRF24L01+
-#define MY_RADIO_NRF24
+#define MY_RADIO_RF24
 #define MY_BAUD_RATE   9600
 
 #define MY_NODE_ID     5
@@ -36,6 +36,7 @@
 #define CHILD_ID_RGB        1
 #define CHILD_ID_LIGHTBULBS 2
 
+#include <Arduino.h>
 #include <SPI.h>
 #include <MySensors.h>
 
@@ -163,6 +164,25 @@ const int rgb_program_steps[] = {
   22
 };
 
+void selftest();
+void set_rgb_status();
+void set_lb_status();
+void send_lb_status();
+void send_rgb_status();
+void calc_fade();
+void handle_program();
+void handle_rgb(const MyMessage &);
+void handle_lightbulbs(const MyMessage &);
+byte hextoint (byte);
+void init_fade(int, byte rgb[]);
+void stop_program();
+void save_state();
+void restore_state();
+void init_program(int);
+void set_rgb (byte rgb[]);
+void set_rgb_random (byte rgb[]);
+void init_fade_random(int, byte rgb[]);
+
 void setup() {
   Serial.begin(MY_BAUD_RATE);
   Serial.println(F("Init done"));
@@ -243,10 +263,10 @@ void loop()
       if (program_mode > PROGRAM_NOP) {
         handle_program();
       }
+    }
   }
-}
 
-set_rgb_status();
+  set_rgb_status();
 }
 
 void receive(const MyMessage &message)
